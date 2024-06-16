@@ -8,6 +8,18 @@
   <p>Body</p>
   <%= book.body %>
   
+  <span>
+    <%= link_to 'Show', book_path(book.id) %>
+  </span>
+  
+  <span>
+    <%= link_to 'Edit', book_edit_path(book.id) %>
+  </span>
+  
+  <span>
+    <%= link_to 'Destroy', book_path(book.id) %>
+  </span>
+  
 <% end %>
 
 <h2>New book</h2>
@@ -20,6 +32,5 @@
   <%= f.text_area :body %>
   
   <%= f.submit 'Create Book' %>
-  
   
 <% end %>
