@@ -1,13 +1,19 @@
-<p>Title:</p>
-<p><%= @book.title %></p>
+<div class="box show">
+  <div class="low">
+    <span class="show-text"><strong>Title:</strong></span>
+    <span class="show-text"><%= @book.title %></span>
+  </div>
   
-<p>Body:</p>
-<p><%= @book.body %></p>
+  <div class="low">
+    <span class="show-text"><strong>Body:</strong></span>
+    <span class="show-text"><%= @book.body %></span>
+  </div>
   
-<span>
-<%= link_to 'Edit', book_edit_path(@book.id) %>
-</span>
-
-<span>
-<%= link_to 'Back', book_index_path(@book) %>
-</span>
+  <span>
+    <%= link_to 'Edit', book_edit_path(@book.id), class: "show-text button" %>
+  </span>
+  <span>|</span>
+  <span>
+    <%= link_to 'Back', book_index_path(@book), class: "show-text button" %>
+  </span>
+</div>

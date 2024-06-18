@@ -1,33 +1,43 @@
-<div class="index">
+<div class="box">
 
-  <h1 class="books-heading">Books</h1>
+<h1 class="heading">Books</h1>
   
-  <p>Title</p>
-  <p>Body</p>
-  
-  <% @books.each do |book| %>
-  
-    <%= book.title %>
-    <%= book.body %>
-  
-    <%= link_to 'Show', book_path(book.id) %>
-    <%= link_to 'Edit', book_edit_path(book.id) %>
-    <%= link_to 'Destroy', book_destroy_path(book), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <table class="table">
+    
+    <thead>
+      <th class="index-item">Title</th>
+      <th class="index-item">Body</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </thead>
 
-  <% end %>
-
-  <h2>New book</h2>
+    <tbody>
+      <% @books.each do |book| %>
+      <tr>
+        <td class="index-item"><%= book.title %></td>
+        <td class="index-item"><%= book.body %></td>
+        <td class="index-item"><%= link_to 'Show', book_path(book.id), class: "button" %></td>
+        <td class="index-item"><%= link_to 'Edit', book_edit_path(book.id), class: "button"%></td>
+        <td class="index-item"><%= link_to 'Destroy', book_destroy_path(book), method: :delete, "data-confirm" => "Are you destroy?", class: "button" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+    
+  </table>
+  
+  <h2 class="new-heading">New book</h2>
 
   <%= form_with model: Book.new do |f| %>
-
-    <h4>Title</h4>
+  
+    <p class="index-create">Title</p>
     <%= f.text_field :title %>
-  
-    <h4>Body</h4>
+
+    <p class="index-create">Body</p>
     <%= f.text_area :body %>
+
+    <div><%= f.submit 'Create Book' %></div>
     
-    <%= f.submit 'Create Book' %>
-  
   <% end %>
 
 </div>
