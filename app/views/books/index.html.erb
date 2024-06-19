@@ -1,9 +1,10 @@
 <div class="box">
 
-<h1 class="heading">Books</h1>
-  
+  <div class="index-item index-flash"><%= flash[:notice_d] %></div>
+  <h1 class="heading">Books</h1>
+
   <table class="table">
-    
+
     <thead>
       <th class="index-item">Title</th>
       <th class="index-item">Body</th>
@@ -18,18 +19,29 @@
         <td class="index-item"><%= book.title %></td>
         <td class="index-item"><%= book.body %></td>
         <td class="index-item"><%= link_to 'Show', book_path(book.id), class: "button" %></td>
-        <td class="index-item"><%= link_to 'Edit', book_edit_path(book.id), class: "button"%></td>
-        <td class="index-item"><%= link_to 'Destroy', book_destroy_path(book), method: :delete, "data-confirm" => "Are you destroy?", class: "button" %></td>
+        <td class="index-item"><%= link_to 'Edit', edit_book_path(book.id), class: "button"%></td>
+        <td class="index-item"><%= link_to 'Destroy', destroy_book_path(book), method: :delete, "data-confirm" => "Are you destroy?", class: "button" %></td>
       </tr>
       <% end %>
     </tbody>
-    
   </table>
-  
+
+
   <h2 class="new-heading">New book</h2>
 
+  <div class="flash-alert">
+    <% if @book.errors.any? %>
+      <span class="error-count flash"><strong><%= @book.errors.count %> errors prohibited this book from being saved:</strong></span>
+      <ul class="error-contents">
+        <% @book.errors.full_messages.each do |message| %>
+          <li class="flash"><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
   <%= form_with model: Book.new do |f| %>
-  
+
     <p class="index-create">Title</p>
     <%= f.text_field :title %>
 
@@ -37,7 +49,7 @@
     <%= f.text_area :body %>
 
     <div><%= f.submit 'Create Book' %></div>
-    
+
   <% end %>
 
 </div>
